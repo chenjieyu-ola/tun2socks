@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"os/signal"
 	"syscall"
 
@@ -65,6 +66,23 @@ func main() {
 
 	engine.Start()
 	defer engine.Stop()
+
+	err := exec.Command("ifconfig", key.Device, "198.18.0.1", "198.18.0.1", "up").Run()
+	if err == nil {
+		exec.Command("route", "add", "-net", "1.0.0.0/8", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "2.0.0.0/7", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "4.0.0.0/6", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "8.0.0.0/5", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "16.0.0.0/4", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "32.0.0.0/3", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "64.0.0.0/2", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "128.0.0.0/1", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "32.0.0.0/3", "198.18.0.1").Run()
+		exec.Command("route", "add", "-net", "198.18.0.0/15", "198.18.0.1").Run()
+	} else {
+		fmt.Println(err)
+		return
+	}
 
 	sigCh := make(chan os.Signal, 1)
 	signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)

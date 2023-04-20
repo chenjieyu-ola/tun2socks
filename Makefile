@@ -60,6 +60,9 @@ debug: all
 tun2socks:
 	$(GO_BUILD) -o $(BUILD_DIR)/$(BINARY)
 
+darwin: darwin-amd64 darwin-arm64
+	lipo -create $(BUILD_DIR)/$(BINARY)-darwin-amd64 $(BUILD_DIR)/$(BINARY)-darwin-arm64  -output $(BUILD_DIR)/$(BINARY)
+
 darwin-amd64:
 	GOARCH=amd64 GOOS=darwin $(GO_BUILD) -o $(BUILD_DIR)/$(BINARY)-$@
 

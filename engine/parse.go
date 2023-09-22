@@ -56,7 +56,7 @@ func parseDevice(s string, mtu uint32) (device.Device, error) {
 
 	switch driver {
 	case fdbased.Driver:
-		return fdbased.Open(name, mtu)
+		return fdbased.Open(name, mtu, 0)
 	case tun.Driver:
 		return tun.Open(name, mtu)
 	default:
@@ -148,5 +148,23 @@ func parseShadowsocks(u *url.URL) (address, method, password, obfsMode, obfsHost
 		}
 	}
 
+	return
+}
+
+func parseMulticastGroups(s string) (multicastGroups []net.IP, _ error) {
+	ipStrings := strings.Split(s, ",")
+	for _, ipString := range ipStrings {
+		if strings.TrimSpace(ipString) == "" {
+			continue
+		}
+		ip := net.ParseIP(ipString)
+		if ip == nil {
+			return nil, fmt.Errorf("invalid IP format: %s", ipString)
+		}
+		if !ip.IsMulticast() {
+			return nil, fmt.Errorf("invalid multicast IP address: %s", ipString)
+		}
+		multicastGroups = append(multicastGroups, ip)
+	}
 	return
 }

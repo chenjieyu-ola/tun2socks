@@ -7,7 +7,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/xjasonlyu/tun2socks/v2/component/dialer"
+	"github.com/xjasonlyu/tun2socks/v2/dialer"
 	M "github.com/xjasonlyu/tun2socks/v2/metadata"
 	"github.com/xjasonlyu/tun2socks/v2/proxy/proto"
 	"github.com/xjasonlyu/tun2socks/v2/transport/socks5"
@@ -65,7 +65,7 @@ func (ss *Socks5) DialContext(ctx context.Context, metadata *M.Metadata) (c net.
 
 func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 	if ss.unix {
-		return nil, errors.New("not supported when unix domain socket is enabled")
+		return nil, fmt.Errorf("%w when unix domain socket is enabled", errors.ErrUnsupported)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), tcpConnectTimeout)

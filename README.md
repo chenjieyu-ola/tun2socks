@@ -8,7 +8,7 @@
 [![Docker Pulls][6]](https://hub.docker.com/r/xjasonlyu/tun2socks)
 [![Releases][7]](https://github.com/xjasonlyu/tun2socks/releases)
 
-[1]: https://img.shields.io/github/actions/workflow/status/xjasonlyu/tun2socks/release.yml?branch=main&logo=github
+[1]: https://img.shields.io/github/actions/workflow/status/xjasonlyu/tun2socks/release.yml?logo=github
 [2]: https://img.shields.io/github/go-mod/go-version/xjasonlyu/tun2socks?logo=go
 [3]: https://goreportcard.com/badge/github.com/xjasonlyu/tun2socks
 [4]: https://api.codeclimate.com/v1/badges/b5b30239174fc6603aca/maintainability
@@ -57,6 +57,12 @@ Welcome and feel free to ask any questions at [Discussions](https://github.com/x
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxjasonlyu%2Ftun2socks.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxjasonlyu%2Ftun2socks?ref=badge_large)
 
-## Stargazers over time
+## Star History
 
-[![Stargazers over time](https://starchart.cc/xjasonlyu/tun2socks.svg)](https://starchart.cc/xjasonlyu/tun2socks)
+<a href="https://star-history.com/#xjasonlyu/tun2socks&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=xjasonlyu/tun2socks&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=xjasonlyu/tun2socks&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=xjasonlyu/tun2socks&type=Date" />
+  </picture>
+</a>

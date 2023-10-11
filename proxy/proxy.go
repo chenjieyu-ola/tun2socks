@@ -3,11 +3,11 @@ package proxy
 
 import (
 	"context"
-	"net"
-	"time"
-
+	"github.com/xjasonlyu/tun2socks/v2/log"
 	M "github.com/xjasonlyu/tun2socks/v2/metadata"
 	"github.com/xjasonlyu/tun2socks/v2/proxy/proto"
+	"net"
+	"time"
 )
 
 const (
@@ -15,6 +15,7 @@ const (
 )
 
 var _defaultDialer Dialer = &Base{}
+var _dnsDialer Dialer = NewDnsDirect()
 
 type Dialer interface {
 	DialContext(context.Context, *M.Metadata) (net.Conn, error)
@@ -46,5 +47,9 @@ func DialContext(ctx context.Context, metadata *M.Metadata) (net.Conn, error) {
 
 // DialUDP uses default Dialer to dial UDP.
 func DialUDP(metadata *M.Metadata) (net.PacketConn, error) {
+	log.Warnf("proxy go dialUDP %d", metadata.DstPort)
+	//if metadata.DstPort == 53 {
+	//	return _dnsDialer.DialUDP(metadata)
+	//}
 	return _defaultDialer.DialUDP(metadata)
 }

@@ -2,7 +2,7 @@ package proxy
 
 import (
 	"context"
-	"errors"
+	"fmt"
 	"net"
 
 	M "github.com/xjasonlyu/tun2socks/v2/metadata"
@@ -25,9 +25,9 @@ func (b *Base) Proto() proto.Proto {
 }
 
 func (b *Base) DialContext(context.Context, *M.Metadata) (net.Conn, error) {
-	return nil, errors.ErrUnsupported
+	return nil, fmt.Errorf("un support")
 }
 
 func (b *Base) DialUDP(*M.Metadata) (net.PacketConn, error) {
-	return nil, errors.ErrUnsupported
+	return nil, fmt.Errorf("un support")
 }

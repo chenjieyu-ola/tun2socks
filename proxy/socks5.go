@@ -2,7 +2,6 @@ package proxy
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io"
 	"net"
@@ -65,7 +64,7 @@ func (ss *Socks5) DialContext(ctx context.Context, metadata *M.Metadata) (c net.
 
 func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 	if ss.unix {
-		return nil, fmt.Errorf("%w when unix domain socket is enabled", errors.ErrUnsupported)
+		return nil, fmt.Errorf("ErrUnsupported when unix domain socket is enabled")
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), tcpConnectTimeout)
